@@ -54,7 +54,7 @@ def is_valid():
 @app.route('/add_transaction', methods=['POST'])
 def add_transaction():
     ''' Adding a new transaction to the Blockchain '''
-    json = requests.get_json()
+    json = request.get_json()
     transaction_keys = ["sender", "reciever", "amount"]
     if not all(key in json for key in transaction_keys):
         return "Some elements of the transaction are missing", 400
