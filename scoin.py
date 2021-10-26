@@ -1,7 +1,6 @@
-from flask import jsonify
+from flask import jsonify, request
 from uuid import uuid4
 
-import config
 from app import create_app
 from blockchain.blockchain import Blockchain
 
@@ -87,17 +86,14 @@ def connect_node():
 
 @app.route('/replace_chain', methods=['GET'])
 def replace_chain():
-    ''' Replacing the chain by the longest chain if needed '''
+    ''' Replace the chain by longest chain if needed '''
     is_chain_replaced = blockchain.replace_chain()
     if is_chain_replaced:
-        response = {
-            'message': 'The nodes had different chains so the chain was replaced by the longest one.',
-            'new_chain': blockchain.chain}
-
+        response = {'message': 'The nodes had different chains so the chain was replaced by the longest one.',
+                    'new_chain': blockchain.chain}
     else:
         response = {'message': 'All good. The chain is the largest one.',
                     'actual_chain': blockchain.chain}
-
     return jsonify(response), 200
 
 
@@ -110,4 +106,4 @@ if __name__ == '__main__':
     blockchain = Blockchain()
 
     # Running the app
-    app.run(host=config.HOST, port=config.PORT)
+    app.run(host='0.0.0.0', port='5000')
