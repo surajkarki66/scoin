@@ -28,7 +28,8 @@ Run different nodes
  
  ##### 4) To connect all different nodes from node1(port:5001)
  POST Request on:  `http://localhost:5001/connect_node`
- - JSON payload: ```bash
+ - Payload:
+ ```bash
       {
           "nodes": [
             "http://127.0.0.1:5001",
@@ -43,7 +44,8 @@ Run different nodes
  
  ##### 6) To add a new transaction to the Blockchain from node1(port:5001)
  POST Request on:  `http://localhost:5001/add_transaction`
- - JSON payload: ```bash
+ - Payload:
+ ```bash
       {
           "sender":"Alex" ,
           "reciever": "Michael",
